@@ -4,14 +4,16 @@ using APICodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APICodeFirst.Migrations
 {
     [DbContext(typeof(CodeFirstDbContext))]
-    partial class CodeFirstDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200611212726_AddedDoctorsSampleData")]
+    partial class AddedDoctorsSampleData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,22 +86,6 @@ namespace APICodeFirst.Migrations
                     b.HasKey("IdMedicament");
 
                     b.ToTable("Medicament");
-
-                    b.HasData(
-                        new
-                        {
-                            IdMedicament = 1,
-                            Description = "Description - med1",
-                            Name = "Med1",
-                            Type = "type1"
-                        },
-                        new
-                        {
-                            IdMedicament = 2,
-                            Description = "Description - med2",
-                            Name = "Med2",
-                            Type = "type2"
-                        });
                 });
 
             modelBuilder.Entity("APICodeFirst.Models.Patient", b =>
@@ -125,22 +111,6 @@ namespace APICodeFirst.Migrations
                     b.HasKey("IdPatient");
 
                     b.ToTable("Patient");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPatient = 1,
-                            Birthdate = new DateTime(1993, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Paweł",
-                            LastName = "Piotrowski"
-                        },
-                        new
-                        {
-                            IdPatient = 2,
-                            Birthdate = new DateTime(1990, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Piotr",
-                            LastName = "Pawlak"
-                        });
                 });
 
             modelBuilder.Entity("APICodeFirst.Models.Prescription", b =>
@@ -169,24 +139,6 @@ namespace APICodeFirst.Migrations
                     b.HasIndex("IdPatient");
 
                     b.ToTable("Prescriptions");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPrescription = 1,
-                            Date = new DateTime(2020, 6, 11, 23, 44, 26, 105, DateTimeKind.Local).AddTicks(8803),
-                            DueDate = new DateTime(2020, 7, 11, 23, 44, 26, 109, DateTimeKind.Local).AddTicks(3887),
-                            IdDoctor = 1,
-                            IdPatient = 1
-                        },
-                        new
-                        {
-                            IdPrescription = 2,
-                            Date = new DateTime(2020, 6, 11, 23, 44, 26, 109, DateTimeKind.Local).AddTicks(6125),
-                            DueDate = new DateTime(2020, 7, 11, 23, 44, 26, 109, DateTimeKind.Local).AddTicks(6150),
-                            IdDoctor = 1,
-                            IdPatient = 2
-                        });
                 });
 
             modelBuilder.Entity("APICodeFirst.Models.Prescription_Medicament", b =>
@@ -210,22 +162,6 @@ namespace APICodeFirst.Migrations
                     b.HasIndex("IdPrescription");
 
                     b.ToTable("Prescription_Medicament");
-
-                    b.HasData(
-                        new
-                        {
-                            IdMedicament = 1,
-                            IdPrescription = 1,
-                            Details = "abc",
-                            Dose = 100
-                        },
-                        new
-                        {
-                            IdMedicament = 1,
-                            IdPrescription = 2,
-                            Details = "cba",
-                            Dose = 154
-                        });
                 });
 
             modelBuilder.Entity("APICodeFirst.Models.Prescription", b =>
