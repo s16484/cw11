@@ -28,6 +28,22 @@ namespace APICodeFirst.Models
 
             modelBuilder.Entity<Doctor>((builder) =>
             {
+                builder.HasKey(n => n.IdDoctor);
+                builder.Property(n => n.IdDoctor)
+                .ValueGeneratedOnAdd();
+
+                builder.Property(n => n.FirstName)
+                .HasMaxLength(100)
+                .IsRequired();
+
+                builder.Property(n => n.LastName)
+               .HasMaxLength(100)
+               .IsRequired();
+
+                builder.Property(n => n.Email)
+               .HasMaxLength(100)
+               .IsRequired();
+
                 builder.HasData(
                     new Doctor { IdDoctor = 1, FirstName = "Andrzej", LastName = "Kowalski", Email = "adrzej@gmail.com" },
                     new Doctor { IdDoctor = 2, FirstName = "Katarzyna", LastName = "Nowak", Email = "katarzyna@gmail.com" }

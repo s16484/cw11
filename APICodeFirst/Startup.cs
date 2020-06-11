@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using APICodeFirst.Models;
+using APICodeFirst.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,7 @@ namespace APICodeFirst
             {
                 opt.UseSqlServer("Data Source=db-mssql;Initial Catalog=s16484;Integrated Security=True");
             });
+            services.AddTransient<ICodeFirstDbService, CodeFirstDbService>();
             services.AddControllers();
         }
 
